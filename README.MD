@@ -1,7 +1,7 @@
 Krel file dropper
 Для использования одним файлом
 
-В содержимом файла dist/index.html в теге <html lang="en" data-baseurl="http://example.com" data-apiurl="api/example" data-token=""> поменять соответствующие атрибуты на свои
+В содержимом файла dist/index.html в теге "html" необходимо поменять соответствующие атрибуты на свои (data-baseurl="http://example.com" data-apiurl="api/example" data-token="")
 
 Setup
 Make sure to install dependencies:
