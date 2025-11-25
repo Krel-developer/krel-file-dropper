@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-baseurl="http://example.com"
+  data-apiurl="api/example"
+  data-token=""
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>krel-file-dropper</title>
+  </head>
+  <body>
+    <div id="app">
+      <label class="btn" for="fileInput">Выберите файлы</label>
+      <span class="drop__text"> или перетащите файлы сюда </span>
+      <input type="file" id="fileInput" multiple style="display: none" />
+
+      <table class="files__list" id="files__list">
+        <tbody></tbody>
+      </table>
+
+      <button class="btn" id="btn__send">Отправить файлы</button>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
