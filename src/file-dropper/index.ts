@@ -6,6 +6,7 @@
 
 import { krelToast } from '../libs/krel-toast/krel-toast'
 import '../libs/krel-toast/krel-toast.sass'
+import { KrelPreloader } from '../prelaoder'
 
 //.................................................................//
 
@@ -27,9 +28,11 @@ export function fileDropperInit(
 ) {
   const dropArea = document.getElementById('app')
 
-  const $answer = document.querySelector('.answer__text')
+  const $answer = document.querySelector('.answer')
 
   const dropEventList = ['dragenter', 'dragover', 'dragleave', 'drop']
+
+  const preloader = new KrelPreloader()
 
   let tableItems: IFileItem[] = []
 
@@ -150,6 +153,7 @@ export function fileDropperInit(
 
       const url = `${BASE_URL}/${API_URL}`
       console.log('url', url)
+      preloader.start()
 
       const response = await fetch(url, {
         method: 'POST',
@@ -176,6 +180,8 @@ export function fileDropperInit(
         krelToast.error(`${error}`)
         console.log(error)
       }
+    } finally {
+      preloader.stop()
     }
   }
 }
