@@ -27,6 +27,8 @@ export function fileDropperInit(
 ) {
   const dropArea = document.getElementById('app')
 
+  const $answer = document.querySelector('.answer__text')
+
   const dropEventList = ['dragenter', 'dragover', 'dragleave', 'drop']
 
   let tableItems: IFileItem[] = []
@@ -157,6 +159,11 @@ export function fileDropperInit(
       console.log(response)
       if (response.status === 200) {
         krelToast.success('Файлы успешно переданы')
+
+        const answerData = response.json()
+        if ($answer) {
+          $answer.textContent = JSON.stringify(answerData, null, 2)
+        }
       } else {
         krelToast.error(`Сервер ответил с ошибкой: ${response.status}`)
       }
