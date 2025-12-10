@@ -160,12 +160,16 @@ export function fileDropperInit(
       if (response.status === 200) {
         krelToast.success('Файлы успешно переданы')
 
-        const answerData = response.json()
+        const answerData = await response.json()
         if ($answer) {
           $answer.textContent = JSON.stringify(answerData, null, 2)
         }
       } else {
         krelToast.error(`Сервер ответил с ошибкой: ${response.status}`)
+
+        if ($answer) {
+          $answer.textContent = 'ошибка'
+        }
       }
     } catch (error: unknown) {
       if (error) {
