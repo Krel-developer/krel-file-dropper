@@ -164,13 +164,13 @@ export function fileDropperInit(
       if (response.status === 200) {
         krelToast.success('Файлы успешно переданы')
 
-        const answerData = await response.json()
         if ($answer) {
           let answerText
           try {
+            const answerData = await response.json()
             answerText = JSON.stringify(answerData, null, 2)
           } catch {
-            answerText = answerData
+            answerText = await response.text()
           }
           $answer.textContent = answerText
         }
