@@ -24,7 +24,7 @@ import { renderFilesTableItem } from './renderFilesTableItem'
 export function fileDropperInit(
   BASE_URL: string,
   API_URL: string,
-  TOKEN: string
+  TOKEN: string,
 ) {
   const dropArea = document.getElementById('app')
 
@@ -135,7 +135,7 @@ export function fileDropperInit(
         reader.readAsDataURL(file)
       } else {
         krelToast.error(
-          `Файл "${file.name}" уже существует в таблице на загрузку`
+          `Файл "${file.name}" уже существует в таблице на загрузку`,
         )
       }
     }
@@ -166,7 +166,13 @@ export function fileDropperInit(
 
         const answerData = await response.json()
         if ($answer) {
-          $answer.textContent = JSON.stringify(answerData, null, 2)
+          let answerText
+          try {
+            answerText = JSON.stringify(answerData, null, 2)
+          } catch {
+            answerText = answerData
+          }
+          $answer.textContent = answerText
         }
       } else {
         krelToast.error(`Сервер ответил с ошибкой: ${response.status}`)
